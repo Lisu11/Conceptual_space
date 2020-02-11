@@ -62,8 +62,8 @@ def generateSpace(begin, end, count=50):
         for y in ys:
             spaceDom.append((x, y))
             spaceCod.append(num_to_fuzzy(1))
-    # return fuzzy.FuzzySet(spaceDom, spaceCod, num_to_fuzzy(0))
-    return spaceDom
+    return fuzzy.FuzzySet(spaceDom, spaceCod, num_to_fuzzy(0))
+    # return spaceDom
 
 def generateSamplePrototypes():
     dom = [(1, 1.5), (2, 1.5), (1.5, 0.9)]
@@ -80,16 +80,16 @@ def generateSamplePrototypes():
     cod = [num_to_fuzzy(0.6), num_to_fuzzy(1), num_to_fuzzy(1)]
     f3 = fuzzy.FuzzySet(dom, cod, defZero=num_to_fuzzy(0))
 
-    dom = [(1, 9)]
-    cod = [num_to_fuzzy(5.5)]
+    dom = [(1, 9), (1.2, 8.8), (0.9, 9.1)]
+    cod = [num_to_fuzzy(0.9), num_to_fuzzy(0.1), num_to_fuzzy(0.5)]
     f4 = fuzzy.FuzzySet(dom, cod, num_to_fuzzy(0))
     return [f1, f2, f3, f4]
 
 
 if __name__ == '__main__':
    
-    plotSpace2D(generateSpace(0, 10, 100), generateSamplePrototypes())
-    fuzzy.FuzzyNumber.comparator = fuzzyComparator.adamo
+    fuzzy.FuzzyNumber.comparator = fuzzyComparator.chang
+    plotSpace2D(generateSpace(-5, 15, 110), generateSamplePrototypes())
  
     # plotSpace2D(generateSpace(0, 10, 100), generateSamplePrototypes(),\
     #      metric=(lambda p, q: max(abs(p[0]-q[0]), abs(p[1]-q[1]))))

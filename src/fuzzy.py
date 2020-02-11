@@ -158,5 +158,6 @@ def empty_number():
 def integratFuzzyFunction(X, fun) -> FuzzyNumber:
     sum = num_to_fuzzy(0)
     for x in X:
+        # print("x : X", x)
         sum = sum + fun(x)
     return sum

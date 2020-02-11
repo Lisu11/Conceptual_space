@@ -7,18 +7,15 @@ import metrics
 # from types import List
 
 class PartitioningAlgorithm:
-    
-    euclidianMetric = (lambda p,q : np.sqrt((p[0]-q[0])**2 + (p[1]-q[1])**2))
-    fuzzyMetric = metrics.fuzzyMetric
 
-    def __init__(self, space, prototypes, metric=euclidianMetric):
+    def __init__(self, space, prototypes, metric=metrics.fuzzyMetric):
         ''' space : type-2 fuzzy set with point as domain?
             prototypes - list of type-2 fuzzy prototypes?
         '''
         self.space = space
-        if not space:
+        if not space.domain():
             raise Exception("Given empty space")
-        dim = len(space[0]) 
+        dim = len(space.domain()[0]) 
         if dim == 2:
             self.dimCaseFun = lambda y: np.log(y)
         elif dim >= 3:
@@ -35,13 +32,15 @@ class PartitioningAlgorithm:
 
     def phi(self, x, i):
         # prepare fuzzy function
-        fuzzyFun = lambda y : self.prots[i](y).times(self.dimCaseFun(self.metric(x, y)))       
+        # print("x, sp[x] ", x, self.space(x))
+        number = self.space(x)
+        fuzzyFun = lambda p : number.times(self.dimCaseFun(self.metric((p, self.prots[i](p)), (x, number))))       
         return - self.fuzzyIntegral(self.prototypeBases[i], fuzzyFun)
 
 
     def deletePrototypes(self):
         sp = []
-        for point in self.space:
+        for point in self.space.domain():
             found = False
             for prot in self.prototypeBases:
                 if point in prot:
