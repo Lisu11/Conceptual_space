@@ -1,3 +1,17 @@
 src/__pycache__/*
 .vscode/launch.json
 .vscode/settings.json
+
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.nav
+*.snm
+*.toc
+*.vrb
+*.pdf

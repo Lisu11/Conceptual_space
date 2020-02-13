@@ -1,0 +1,409 @@
+\documentclass[leqno,12pt]{amsart}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+\usepackage{esint}
+%\usepackage[notref]{showkeys}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\h}{\mathbb{H}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\one}{\mathbf 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\theoremstyle{remark}
+\newtheorem*{note}{Remark}
+
+\theoremstyle{remark}
+\newtheorem*{notation}{\textbf{Notation}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\numberwithin{equation}{section}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\supp}{supp}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[A method of classification]{Type-2 fuzzy sets and Newton's fuzzy potential in an algorithm of classification objects of a conceptual space}
+
+\author[P. Lisowski]{Piotr Lisowski}
+\address{Institute of Computer Science\\
+Wroclaw University\\
+ul. Joliot-Curie 15\\
+50-383 Wrocław, Poland}
+
+\author[R. Urban]{Roman Urban}
+\address{Institute of Mathematics\\
+Wroclaw University\\
+Plac Grunwaldzki 2/4\\
+50-384 Wroclaw, Poland} \email{urban@math.uni.wroc.pl}
+
+\keywords{Type-2 fuzzy sets, Fuzzy number valued function, Conceptual spaces, Type-2 fuzzy prototypes, Fuzzy Newton's potential}
+
+\begin{document}
+\begin{abstract}
+In this paper we present an algorithm which, having as input data a set $X\subset\R^D$, a finite number of prototypes $\tilde P_1,\ldots,\tilde P_n$ being type-2 fuzzy sets in $X$, and a fuzzy set of type-2 $\tilde A,$ can be used to classify set $\tilde A$ into the conceptual domain defined by one of the given prototypes. We use a language derived from cognitive science thus the family of all fuzzy sets of type-2 in $X$ is thought of as conceptual space with type-2 prototypes $\tilde P_1,\ldots,\tilde P_n.$
+\end{abstract}
+\maketitle
+\section{Introduction}
+\section{Conceptual spaces}\label{sconceptual}
+\section{Fuzzy sets of type-1 and 2}
+Before we present a definition of a fuzzy set of type 2, we must define a $D$-dimensional fuzzy set of type 1, i.e. simply a fuzzy set in $\R^D$.
+\par
+The notion of metric space will often be used in this work. So we start with it.
+\begin{definition}
+Let $X$ be an arbitrary set. We say that the set X is a {\em metric space} if it is equipped with the function $d:X\times ^{}X\to[0,+\infty)$ which satisfies the following properties
+\begin{itemize}
+\item[(i)] $d(x, y)=0$ if and only if $x=y,$
+\item[(ii)] for every $x,y,z\in X,$ $d(x,z)+d(z,y)\leq d(x,y)$
+(the triangle inequality),
+\item[(iii)] for every $x,y\in X$, $d(x,y)=d(y,x)$ (symmetry).
+\end{itemize}
+\end{definition}
+Let $X$ be a set. In the context of cognitive science this set is often called {\em universe of discourse} or {\em conceptual space}.
+\par
+A $D$-dimensional fuzzy set (of type-1) in $R^D$, denoted $A^*$, is defined by and may be identified with its
+characterizing function $\xi_{A^*}$ (\cite{19, 20}).
+\par
+There are many definitions of fuzzy sets in the literature and, consequently, there are many definitions of the function characterizing the fuzzy set.
+\par
+Depending on the problem under consideration, in which fuzzy sets are used, or depending on the techniques used in proofs of theorems, different properties of a characterizing function of a fuzzy set are required.
+\par
+In this paper we work with fuzzy sets
+whose characterizing functions satisfy
+\begin{definition}
+The characterizing function $\xi_{A^*}$ of a $D$-dimensional fuzzy set $A^*$
+is a function $\xi_{A^*}:\R^D\to\R$ satisfying:
+\begin{itemize}
+\item[(1)] $\xi_{A^*}:\R^D\to[0,1],$
+%\item[(2)] $\supp\xi_{A^*}$ is bounded,
+\item[(3)] for every $\alpha\in (0, 1]$ the so called $\alpha$-{\em cut} $A^*_\alpha$ of the fuzzy set $A^*$,
+$$A_\alpha^*=\{x\in\R^d: \xi_{A^*}\geq\alpha\}$$ is a non-empty, compact, and convex set. We also assume that the following set
+$$A_0^*:=\overline{\{x\in\R^D:\xi_{A^*}(x)\geq 0\}}=\supp\xi_{A^*}$$
+has the same properties.
+\end{itemize}
+\end{definition}
+The set of all $D$-dimensional fuzzy sets with $X\subseteq\R^D$ is denoted by $\mathcal F_{\mathrm{type-1}}(X).$
+\par
+Note that in the definition of a $D$-dimensional fuzzy set above the set $X\subseteq\R^D$ can be replaced by any set contained in metric space or even in any topological space. However, in our work we will not consider such generalizations.
+\par
+We are now in a position to define {\em type-2 fuzzy sets}. A good reference for type-2 fuzzy sets is \cite{Mendel} as well as the original works of Zadeh \cite{ZadehI,ZadehII}, and \cite{ZadehIII}.
+\begin{definition}[{\cite[Definition 1]{Mendel}}]\label{def1}
+Let $X\subseteq\R^D$ be an arbitrary set. A {\em type-2 fuzzy set in $X$}, denoted $\tilde A,$ is characterized
+by a {\em type-2 membership function} $\mu_{\tilde A}(x,u).$
+Specifically, this means that
+$$\tilde A=\left\{((x,u),\mu_{\tilde A}(x,u)):x\in X,\,u\in J_x\subseteq[0,1]\right\},$$
+where
+$$\mu_{\tilde A}(x,u):X\times J_x\to[0,1].$$
+\end{definition}
+The family of all type-2 fuzzy sets in $X$ contained in $\R^D$ is denoted by $\mathcal F_{\mathrm{type-2}}(X).$
+\par
+In our considerations the following equivalent definition will be more convenient.
+\begin{definition}\label{def2}
+Type-2 fuzzy set $\tilde A$ is a map
+$$\tilde A: X\to\mathcal F_{\mathrm{type-1}}([0,1]),\;X\ni x\mapsto A^*(x)\in\mathcal F_1([0,1]).$$
+The support
+of the function $\tilde A,$
+$$\supp\tilde A=\overline{\{x\in X:A^*(x)\not\equiv 0\}}$$
+is called the {\em base} of the type-2 fuzzy set $\tilde A.$
+\end{definition}
+In other words, the type-2 fuzzy set is a map of the set $X$ into the family of fuzzy sets (of type-1), having their supports contained in the interval $[0,1].$
+\section{Metrics in $\mathcal F_{\mathrm{type-2}}(X)$}
+A number of metrics can be introduced in $\mathcal F_{\mathrm{type-2}}(X)$. We will show three examples of natural metrics in this space. Supremum, $\ell^p$ and some types of the Hausdorff metrics.
+\subsection{Supremum metric, $d_\infty$}
+The definition of the supremum metric in space $\mathcal F_{\mathrm{type-2}}(X)$, $X\subseteq\R^D,$ is a simple consequence of the fact that space $\mathcal F_{\mathrm{type-2}}(X)$ is the space of the function from $X$ to $\mathcal F_{\mathrm{type-1}}([0,1])$ and the latter space is the metric space with the supremum norm. In detail, the construction goes as follows.
+\par
+Let $X$ be a set contained in $\R^D$ (or in other abstract space) and $(Y,d_Y)$ be the metric space. We need the concept of a {\em bounded} function from X to Y in this context. The natural definition is as follows. The function $f:X\to Y$ is said to be {\em bounded} if there is a constant $M\geq 0$ such that
+$$\sup_{x,x^\prime\in X}d_Y(f(x),f(x^\prime))\leq M.$$
+\par
+Let $B(X,Y)$ be the set of all bounded functions from a set $X$ into the metric space $Y$ equipped with the supremum metric $d_\infty$,
+$$d_\infty(f,g)=\|f-g\|_\infty:=\sup_{x\in X}|f(x)-g(x)|.$$
+One can easily check that $(B(X,Y),d_\infty)$ is a metric space.
+\par
+Hence, by Definition~\ref{def2}, we can define metric on $\mathcal F_{\mathrm{type-2}}(X)$ in the following way.
+\par
+Let $\tilde A,\tilde B\in\mathcal F_{\mathrm{type-2}}(X),$ $X\subseteq\R^D.$ Define,
+$$d_{\infty}(\tilde A,\tilde B)=\sup_{x\in X}\|\xi_{A^*(x)}-\xi_{B^*(x)}\|_\infty=\sup_{x\in X}\sup_{y\in[0,1]}|\xi_{A^*(x)}(y)-\xi_{B^*(x)}(y)|.$$
+Clearly, the space $(\mathcal F_{\mathrm{type-2}}(X),d_\infty)$ is a metric space. In fact, since  $\mathcal F_{\mathrm{type-1}}([0,1])$ is the space of bounded functions, then with the usual supremum metric $\mathcal F_{\mathrm{type-1}}([0,1])$ is the metric space.
+\subsection{$\ell^p$ metric}
+Let $X\subseteq\R^D$.
+It follows from Definition~\ref{def1} that the space of type-2 fuzzy numbers in $\R^D$ is a subset of the Cartesian product
+$$\mathcal F_{\mathrm{type-2}}(X)\subseteq X\times[0,1]\times[0,1].$$
+Therefore, if for every real number $p\geq 1,$ we define on the set $(X\times[0,1]\times[0,1])^2$ the following function
+$$d_p((x,u,t),(x^\prime,u^\prime,t^\prime))=
+\left(\|x-x^\prime\|^p
++|u-u^\prime|^p+|t-t^\prime|^p\right)^{1\slash p},$$
+where $\|\cdot\|$ is an arbitrary norm on $\R^D,$
+then we get that
+for every $\R\ni p\geq 1$ the space $ (\mathcal F_{\mathrm{type-2}}(X),d_p)$ is the metric space.
+\subsection{Hausdorff metrics}
+Let $(X,d)$ be a metric space. Consider the family $\mathcal C(X)$ of non-empty compact subsets of $X,$ i.e.
+$$\mathcal C(X)=\{A\subseteq X\,\mid\,A\not=\emptyset\text{ and $A$ is compact}\}.$$
+We introduce metric in the space $\mathcal C(X).$
+For $x\in X$ and $A,B\in\mathcal C(X)$ define
+\begin{equation*}
+\begin{split}
+\delta(x,A)=&\inf\{d(x,y)\mid y\in A\},\\
+\delta(A,B)=&\sup\{\delta(x,B)\mid x\in A\}.
+\end{split}
+\end{equation*}
+The {\em Hausdorff metric} is the following function $d_H:\mathcal C(X)\times\mathcal C(X)\to[0,\infty)$ given by the formula
+\begin{equation*}
+d_H(A,B)=\max\{\delta(A,B),\delta(B,A)\}.
+\end{equation*}
+The next theorem says that $d_H$ is in fact a metric in the space $\mathcal C(X).$
+\begin{theorem}[{\cite[Proposition 1.1.5]{Fractals}}]\label{H}
+The {\em Hausdorff} space $(\mathcal C(X),d_H)$ is a metric space. Moreover, if $(X,d)$ is a complete metric space then $(\mathcal C(X),d_H)$ is a complete metric space.
+\end{theorem}
+Now we consider the space $\mathcal F_{\mathrm{type-1}}([0,1])$. Let, for $A^*,B^*\in\mathcal F_{\mathrm{type-1}}([0,1]),$
+$$d_H^{\mathcal F_{\mathrm{type-1}}}(A^*,B^*)=\int_0^1d_H(A_\alpha^*,B_\alpha^*)d\alpha.$$
+It is easy to check that $(\mathcal F_{\mathrm{type-1}}([0,1]),d_H^{\mathcal F_{\mathrm{type-1}}})$ is a metric space.
+\par
+We are now in a position to define metrics in the space $\mathcal F_{\mathrm{type-2}}(\R^D)$ of type-2 fuzzy sets in $\R^D.$
+\par
+We can define, for example, {\em supremum-Hausdorff metric}
+$$d^{\mathcal F_{\mathrm{type-2}}}_{\ell^\infty-H}(\tilde A,\tilde B)=\sup_{x\in X}d_H^{\mathcal F_{\mathrm{type-1}}}(A^*(x),B^*(x))$$
+or {\em $\ell^1$-Hausdorff metric}
+$$d^{\mathcal F_{\mathrm{type-2}}}_{\ell^1-H}(\tilde A,\tilde B)=\int_0^1d_H^{\mathcal F_{\mathrm{type-1}}}(A^*(x),B^*(x))dx.$$
+If $p\geq 1$ we can generalize the $\ell^1 $-Hausdorff metric to $\ell^p$-Hausdorff metric
+$$d^{\mathcal F_{\mathrm{type-2}}}_{\ell^p-H}(\tilde A,\tilde B)=\left(\int_0^1d_H^{\mathcal F_{\mathrm{type-1}}}(A^*(x),B^*(x))dx\right)^{1\slash p}.$$
+\section{Type-2 fuzzy prototypes in conceptual spaces}\label{lingapp}
+In \cite{UG} $D$-dimensional type-1 fuzzy prototypes were considered and using theory of gravitation partitioning algorithm was constructed. Such a generalisation has many applications.
+We will start with an example from cognitive science.
+\par
+Not all people see colors in the same way. For this reason, the prototype of
+a given color for one person will not necessarily be the prototype for another person. Moreover,
+everybody has a tendency to view the prototype of the color red not as one object described by the
+three parameters above, but rather by a spectrum of red colors. For most people, the prototype of
+the color red is simply a subset of conceptual space. This example can be very easily generalized
+using a Voronoi diagram. It was observed in \cite{UG} that even this generalized model is still inadequate. Although someone may see the color
+red as a spectrum, he is also able to show that some red colors from the prototype set are
+'redder' than the others. Taking this into account, we proposed a completely different method which
+solves the case described above.
+We used $D$-dimensional type-1 fuzzy sets. The characterizing function evaluated at a given point shows to what extent this point represent the concept.
+\par
+In this work we go a step further and we use prototypes being $D$-dimensional type 2-fuzzy sets.
+\par
+If we ask someone to indicate a prototype of red, we expect him to give us a spectrum of colours close to a perfect red. However, for a given color a person asked how much red is this color if the ideal red has a weight of 1, then the person asked can give us a range, e.g. $[.3,.5].$ Therefore, we obtained a fuzzy interval number. Hence we have to deal with type-2 fuzzy sets.
+\section{Integrals of fuzzy set valued functions}
+Since we want to define our fuzzy Newton potential as an integral from a fuzzy set valued function, we are interested in methods of integrating such functions.
+It turns out that there is a lot of definitions of integrals of fuzzy set valued functions.
+\par
+In this section we recall several types of integrals of the functions taking values in the set of  type-1 fuzzy sets.
+\par
+Let $f^*$ be a fuzzy set valued function, i.e.
+$$f^*:\R^D\to\mathcal F_{\mathrm{type-1}}(\R).$$
+\par
+We start with the most natural definition given in \cite{20}.
+\par
+For $0<\alpha\leq 1$, consider $\alpha$-cuts of $f^*(x)$. Since by our assumption $\alpha$-cuts are convex and compact thus $\alpha$-cut is an interval. Therefore we can write, for every $\alpha\in(0,1],$
+$$C_\alpha(f^*(x))=[\underline{f}_\alpha(x),\overline{f}_\alpha(x)].$$
+The real valued functions $\underline{f}_\alpha(\cdot)$ and $\overline{f}_\alpha(\cdot)$ are called {\em $\alpha$-level functions}.
+\begin{definition}\label{calkastandardowa}
+Let $f^*$ be a type-1 fuzzy valued function defined on the measure space $(X,\mathcal B,\mu)$, where $\mathcal B$ is a $\sigma$-field of Borel subsets of $X,$ and $\mu$ is a measure on $\mathcal B.$ If all $\alpha$-level functions $\underline{f}_\alpha(\cdot)$ and $\overline{f}_\alpha(\cdot)$ are integrable with finite integrals $\int_X\underline{f}_\alpha(x)d\mu(x)$ and $\int_X\overline{f}_\alpha(x)d\mu(x)$, then the generalized integral $\int_X f^*(x)d\mu(x)$ is the fuzzy number $J^*$ whose $\alpha$-cuts $C_\alpha(J^*)$ are defined by
+$$C_\alpha(J^*)=[\underline{J}_\alpha,\overline{J}_\alpha]:=
+\left[\int_X\underline{f}_\alpha(x)d\mu(x),
+\int_X\overline{f}_\alpha(x)d\mu(x)\right],\;\;\delta\in(0,1].$$
+\end{definition}
+By the representation lemma \cite[Lemma 2.1]{20} the characterizing function of the fuzzy integral $J^*$ is, for every $x\in X,$ given by\footnote{$\one_A(x)=1$ if $x\in A$ and $\one_A(x)=0$ if $x\not\in A.$}
+$$\xi_{J^*}(x)=
+\sup\left\{\alpha\one_{[\underline{J}_\alpha,
+\overline{J}_\alpha]}(x):\alpha\in[0,1]\right\}.$$
+The resulting fuzzy integral is denoted by
+$$\fint_Xf^*(x)d\mu(x).$$
+There are many integrals. Just as an example, let's take the Henstock-Kurzweil integral \cite{HK} (we will continue to write the integral (HK)), which is a generalization of the Riemann integral. The generalisation of the integral (HK) to fuzzy functions (fHK) is given in \cite{Musial}. In \cite{Musial}, functions with a $[a,b]\subset R.$ domain are considered.
+\par
+To make the definition of (fHK) for function with multi-dimensional domains is a simple exercise using the monograph \cite{HK}.
+\par
+At this point we omit both the definition of the integral (HK) and leave out the details leading to the object (fHK) because in the examples that we are going to present the integral turns into a sum and the whole theory of the integral is not needed.
+
+The Choquet integral is defined in \cite{Choquet}.
+\section{Ranking methods for fuzzy numbers}
+For more details on ranking methods we refer to excellent survey paper \cite{Brunelli}.
+\par
+Ranking methods for 1-dimensional fuzzy numbers will play an important role in the description of our algorithm.
+
+Here we present a few methods how to, given a (finite) set of 1-di\-men\-sio\-nal fuzzy sets\footnote{The 1-dimensional fuzzy sets are often called sets of fuzzy numbers.}, rank it.
+\par
+In order to make a choice of the ranking method one needs some a priori knowledge. A specialist who solves a particular problem usually has a good understanding and a sense of detail of the problem. This allows him/her to easily adapt the known ranking methods to the problem he/she is solving.
+\par
+Here in this work we will mention only a few methods of comparing fuzzy numbers in order to illustrate our partition algorithm. A reader interested in using our algorithm  can find in the existing literature an appropriate criterion for comparing fuzzy numbers, or construct such a criterion himself.
+\par
+In this section we follow \cite{Brunelli}.
+
+There are two approaches to the problem. The first is crisp the second is fuzzy. We will consider the first method since everything can be applied to the second method without any problem (see \cite[p.629]{Brunelli}).
+The first method of ranking fuzzy numbers $\mathcal F$ use an appropriate map which sends element of $\mathcal F$ into the real line $\R.$ Thus we are given a map $M:\mathcal F\to\R$
+and we say that fuzzy numbers $x^*$ is not greater than $y^*$ (we denote this by $x^*\preccurlyeq y*$) if $M(x)\leq M(y^*).$
+\par
+In the second method fuzzy binary relation is used. That is we are given function $M:\mathcal F\times\mathcal F\to[0,1].$ If $A^*,B^*\in\mathcal F$ then $M(A^*,B^*)\in[0,1]$ is interpreted as the degree to which $A^*$ is greater than $B^*.$ Fuzzy numbers are ranked (with respect to $M$) in the following way
+$$M(A^*,B^*)\geq M(B^*,A*)\text{ then }A^*\succcurlyeq_M B^*.$$ In this section we use a little bit different notation for characterizing function of a fuzzy number. If $A^*$ is a fuzzy number then its characterizing function is denoted by $A.$
+\par
+Below is a selection from the list of important ranking methods as proposed in~\cite{Brunelli}. For ranking based on fuzzy binary relation see \cite{Brunelli}.
+\begin{itemize}
+\item Adamo's method \cite{Adamo}.
+One simply evaluates the fuzzy number based on the rightmost
+point of the $\alpha$-cut $[a^-_\alpha,a^+_\alpha]$ for a given $\alpha$:
+\begin{equation*}
+\mathrm{AD}_{\alpha}(A^*) = a^+_\alpha.
+\end{equation*}
+\item
+The {\em center of gravity} of a fuzzy number was introduced in~\cite{Ost} as
+\begin{equation*}
+\mathrm{CoG}(A^*) = \int_{-\infty}^{+\infty} \frac{xA(x)}{A(x)}dx
+\end{equation*}
+\item Yager~\cite{Yag} proposed four different approaches for the ranking of fuzzy subsets with the support in the unit interval. One of the proposed indices is
+\begin{equation*}
+\mathrm{Y}_1(A^*) = \int_{-\infty}^{+\infty} \frac{g(x) A(x)}{A(x)}dx
+\end{equation*}
+where $g(x)$ measures the importance of $x,$ can be seen as a generalization of the ranking based on the center of gravity.
+\item
+The concept of the {\em median value} of a fuzzy interval introduced in~\cite{medianpaper}  generalizes the definition
+of median to fuzzy numbers by minimizing the following expression
+\begin{equation*}
+|\int_{-\infty}^{\mathrm{Med}(A)}A(x)dx- \int_{\mathrm{Med}(A)}^{+\infty}A(x)dx|.
+\end{equation*}
+\item
+Chang~\cite{Chang} proposed a ranking method based on the index
+\begin{equation*}
+\mathrm{C}(A^*) = \int_{x\in\supp A} xA(x)dx.
+\end{equation*}
+\end{itemize}
+\section{Classification algorithm}
+\subsection{Type-2 fuzzy Newton's potential}
+We use the following notation.
+If $\tilde x\in\mathcal F_{\mathrm{type-2}}(\R^D)$, then (by Definition~\ref{def2})
+$$\tilde x=(x,x^*),$$
+where $$x\in\R^D$$ and
+$$x^*:[0,1]\to[0,1].$$
+\par
+Let $\mathcal P=\{\tilde P_1,\tilde P_2,\ldots \tilde P_k\}$ consists of $n$ type-2 fuzzy sets with the corresponding base sets $P_i\subset\R^D.$
+A fuzzy prototype is each type-2 fuzzy set $\tilde P_i$ contained in $\mathcal P.$
+\par
+For every $\tilde x,$ whose base $x$ does not intersect
+with any $P_i$, $i=1,\ldots,n,$ i.e.
+$$x\cap\bigcup_{i=1}^nP_i=\emptyset,$$
+we can compute fuzzy Newtonian potentials with the analogy of the situation where elements $\tilde P_i$ were of type-1 (this case was considered in \cite{UG}). The i{\em th} potential has the following form
+\begin{equation}\label{Psi}
+\Psi_i(\tilde x)=\begin{cases}-\int_{P_i}A^*(y)\ln d(\tilde x,\tilde y)\|dy&\text{ if $D=2$,}\\
+-\int_{P_i}A^*(y)d(x,y)^{2-d}dy&\text{ for $D\geq 3$}.
+\end{cases}
+\end{equation}
+In analogy with the classical case we can think that the fuzzy numbers $\Psi_i(x)$ indicates the energy of the potential field at point $x,$ which is generated by
+the mass concentrated in the domain $P_i$ with the fuzzy density $A^*.$
+\subsection{Algorithm} The algorithm's task is to assign the element $\tilde x$ such that $x\cap\bigcup_{i=1}^nP_i=\emptyset$ to an appropriate concept domain. The algorithm works as follows.
+\begin{itemize}
+\item[Step 1.] On the basis of the knowledge of the problem, a method of integrating functions with values in fuzzy numbers is selected.
+\item[Step 2.] In the second step, the integrals of $\Psi_i(x)$ are calculated for all $i=1,\ldots,n$.
+\item[Step 3.] On the basis of the knowledge of the problem under study, a method is selected according to which a ranking of fuzzy sets $\Psi_i$, $i=1,\ldots,n,$ is obtained.
+\item[Step 4.] By $i_o$ denote the index for which the integral is maximum due to the chosen ranking method. That is $\Psi_{i_o}>\Psi_i,$ for all $i\not=i_o.$ If there are several indices to which correspond the maximum integrals, the element $x$ cannot be classified\footnote{This type of situation also occurs in the case of partition obtained using the Voronoi diagram method.}. Elements on the edges of $v(P_i)$ cannot be qualified to any concept domain.
+\item[Step 5.] Element $\tilde x$ is assigned to a concept domain to which the prototype $\tilde P_{i_o}$ corresponds.
+\end{itemize}
+\section{Examples}
+
+\begin{thebibliography}{111}
+
+\bibitem{Adamo}
+Adamo, J. M. Fuzzy decision trees. {\em Fuzzy Sets and Systems} 4(3):207--219, 1980.
+
+\bibitem{Brunelli}
+Brunelli, M.; Mezei, J. How different are ranking methods for fuzzy numbers? A numerical study. {\em Internat. J. Approx. Reason.} 54(5):627--639, 2013.
+
+\bibitem{Chang}
+Chang W. Ranking of fuzzy utilities with triangularmembership functions, in: Proceedings of International Conference on Policy Analysis and System, 263--272, 1981.
+
+\bibitem{medianpaper}
+Dubois, D.; Kerre, E.; Mesiar, R.; Prade, H. Fuzzy interval analysis, in: Fundamentals of Fuzzy Sets, Handbook Series of Fuzzy Sets, vol. 1, 483--582 Kluwer, Dordrecht, 2000.
+
+\bibitem{Gar88}
+G\"{a}rdenfors, P. Semantics, conceptual spaces and the dimensions of music. [In] V. Rantala, L. Rowell,
+\& E. Tarasti (Eds.), {\em Essays on the philosophy of music} (pp. 9--27). Helsinki: Akateeminen kirjakauppa
+(Acta Philosophica Fennica, 43), 1988.
+
+\bibitem{Gar96}
+G\"{a}rdenfors, P. Mental representation, conceptual spaces and metaphors. {\em Synthese}, 106(1):21--47, 1996.
+
+\bibitem{Gar00}
+G\"ardenfors, P.
+\newblock {\it Conceptual spaces: the geometry of thought}. MIT Press, Cambridge, MA, 2000
+
+\bibitem{Gar17}
+G\"ardenfors, P.
+\newblock {\it The geometry of meaning}. MIT Press, Cambridge, MA, 2017.
+
+\bibitem{Gordon}
+Gordon, A. D. {\em Classification} (2nd ed.). Boca Raton: Chapman \& Hall/CRC Press, 1999.
+
+\bibitem{Choquet}
+Jang, LeeChae; Kim, TaeKyun; Jeon, JongDuek; Kim, WonJu. On Choquet integrals of measurable fuzzy number-valued functions. {\em Bull. Korean Math. Soc.} 41(1):95--107, 2004.
+
+\bibitem{Fractals}
+Kigami, J. {\em Analysis on fractals}. Cambridge University Press, 2001.
+
+\bibitem{Mendel}
+Mendel, J. M.; Bob John, R. I.
+Type-2 fuzzy sets made simple. {\em IEEE Transactions on Fuzzy Systems} 10(2):, 2002.
+
+\bibitem{Musial}
+Bongiorno, B.; Di Piazza, L.; Musiał, K. A decomposition theorem for the fuzzy Henstock integral. {\em Fuzzy Sets and Systems} 200:36--47, 2012.
+
+\bibitem{Okabe}
+Okabe, A.; Boots, B.; Sugihara, K.; Chiu, S. N. {\em Spatial tessellations — concepts and applications
+of Voronoi diagrams} (2nd ed.). Chichester: John Wiley \& Sons, 2011.
+
+\bibitem{Ost}
+{\O}stergaard, J. J. Fuzzy logic control of a heat exchanger process, St{\ae}rkstromsafdelingen, Danmarks Tekniske Hojskole, 1976.
+
+\bibitem{Ric}
+Rickard, J. T. A concept geometry for conceptual spaces. {\em Fuzzy Optimization and Decision Making} 5, 311--329, 2006.
+
+\bibitem{Ricetal}
+Rickard, J. T.; Aisbett, J.; Gibbon G. Reformulation of the theory of conceptual spaces. {\em Information Sciences} 177, 4539--4565, 2007.
+
+\bibitem{UG}
+Urban, R.; Grzeli\'{n}ska, M. A potential theory approach to an algorithm on conceptual space partitioning. {\em Cognitive Studies$\mid$\'{E}tudes Cognitives.} 17, Article No.: 1310, 1--10, 2017.
+
+\bibitem{UM}
+Urban, R.; Mr\`{o}z, S. A class of conceptual spaces consisting of boundaries of infinite $p$-ary trees. {\em Journal of Logic, Langugage and Information}, to appear.
+
+\bibitem{19}
+Viertl R; Hareter, D.
+{\em Beschreibung und Analyse unscharfer Information. Statistishe
+Methoden f\"ur unscharfe Daten}, Springer, Wien, New York, 2005.
+\bibitem{20}
+Viertl, R. {\em  Statistics Methods for Fuzzy Data}, John Wiley \& Sons, (2010).
+
+\bibitem{Yag}
+Yager, R. R. Ranking fuzzy subsets over the unit interval, in: IEEE Conference on Decision and Control including the 17th Symposium on Adaptive Processes, 1435--1437,
+Iona College, New Rochelle, New York, 1978.
+
+\bibitem{HK}
+Yeong, L. T. {\em Henstock-Kurzweil integration on Euclidean spaces}. Series in Real Analysis - Vol. 12, World Scientific, 2011.
+
+\bibitem{ZadehI}
+Zadeh, L. A. The concept of a linguistic variable and its application to approximate reasoning. I. {\em Information Sci.} 8:199--249, 1975.
+
+\bibitem{ZadehII}
+Zadeh, L. A. The concept of a linguistic variable and its application to approximate reasoning. II. {\em Information Sci.} 8:301--357, 1975.
+
+\bibitem{ZadehIII}
+Zadeh, L. A. The concept of a linguistic variable and its application to approximate reasoning. III. {\em Information Sci.} 9(1):43--80, 1975.
+
+\end{thebibliography}
+\end{document}
+
+
